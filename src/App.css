@@ -1,3 +1,8 @@
+#content1::after {
+  content: "\a";
+  white-space: pre;
+}
+
 @font-face {
   font-family: 'Digital-7';
   src: url(./fonts/digital-7.ttf) format('truetype');
@@ -82,7 +87,7 @@ body {
 
 button {
   font-size: 1.2rem;
-  border-radius:5px;
+  border-radius: 5px;
   padding: 10px;
   margin-bottom: 10px;
 }
@@ -98,7 +103,7 @@ a {
 }
 
 .message {
-  background:#da9090;
+  background: #da9090;
   border: 2px solid rgb(255, 115, 0);
   border-radius: 5px;
   padding: 10px;
@@ -110,7 +115,8 @@ a {
 
 @media (max-width: 770px) {
 
-  .calendar, .ampm {
+  .calendar,
+  .ampm {
     font-size: 0.7rem;
   }
 
@@ -125,5 +131,5 @@ a {
   .countdown {
     font-size: 4rem;
   }
-  
+
 }
