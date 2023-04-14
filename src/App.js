@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import './App.css';
-import { Clock } from './components/Clock';
+//import { Clock } from './components/Clock';
 import { Countdown } from './components/Countdown';
 
 function App() {
@@ -10,8 +10,7 @@ function App() {
 
   return (
     <>
-      <Clock />
-      <Countdown event={e=>setMessage("The world has been destroyed! :(")}/>
+      <Countdown event={e => setMessage("The world has been destroyed! :(")} />
       {
         message && (
           <div className='message'>
@@ -20,7 +19,7 @@ function App() {
         )
       }
 
-      <a href="https://github.com/sergiss/react-clock" target="_blank"><i className="fa">&#xf09b;</i> Source Code </a>
+      <a href="https://github.com/sergiss/react-clock" target="_blank"><i className="fa">&#xf09b;</i> Clock Template Source Code </a>
     </>
   );
 }

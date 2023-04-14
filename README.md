@@ -6,3 +6,6 @@
 ![React Clock](https://github.com/sergiss/react-clock/blob/master/react-clock.png?raw=true)
 
 www.sergiosoriano.com
+
+npm install
+npm start
