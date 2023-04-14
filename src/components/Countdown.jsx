@@ -6,22 +6,20 @@ import React, { useEffect, useState } from 'react'
 import { Number } from './Number'
 import { Word } from './Word'
 
-export const Countdown = ({tgt = 20000, event}) => {
+export const Countdown = ({ tgt, event, restart }) => {
 
-    const [millis , setMillis ] = useState(0);
+    const [millis, setMillis] = useState(0);
     const [seconds, setSeconds] = useState(0);
-    const [hours  , setHours  ] = useState(0);
+    const [hours, setHours] = useState(0);
 
     const [time, setTime] = useState(tgt);
 
-    useEffect(()=> {
+    useEffect(() => {
 
-        const interval = setInterval(()=> {
-
-            setTime(time=> {
-
-                if(time <= 0) {
-                    clearInterval(interval);
+        const interval = setInterval(() => {
+            setTime(time => {
+                if (time <= 0) {
+                    clearInterval(interval)
                     setMillis(0);
                     setSeconds(0);
                     setHours(0);
@@ -33,21 +31,18 @@ export const Countdown = ({tgt = 20000, event}) => {
                     setHours(Math.floor(time / 1000 / 60));
                     return time - 60;
                 }
-                
             });
         }, 60);
-
         return e => clearInterval(interval);
-
     }, []);
-
-    const addTime = ()=> {
-        setTime(time + 10000);
+    const addTime = () => {
+        setTime(time + 5000);
     }
-
+    if (restart) {
+        addTime();
+    }
     return (
         <div className='clock'>
-
             <div className='countdown'>
                 <Number value={hours} />
                 <Word value={':'} />
@@ -55,9 +50,6 @@ export const Countdown = ({tgt = 20000, event}) => {
                 <Word value={':'} />
                 <Number value={millis} />
             </div>
-
-            <button onClick={e=>addTime()}>Press to save the world</button>
-       
         </div>
     )
 }

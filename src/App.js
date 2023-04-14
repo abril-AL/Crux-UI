@@ -1,7 +1,6 @@
 
 import { useState } from 'react';
 import './App.css';
-//import { Clock } from './components/Clock';
 import { Countdown } from './components/Countdown';
 import f1 from './faces/female/F (1).jpg'
 import f2 from './faces/female/F (2).jpg'
@@ -54,29 +53,43 @@ import f48 from './faces/female/F (48).jpg'
 import f49 from './faces/female/F (49).jpg'
 import f50 from './faces/female/F (50).jpg'
 import f51 from './faces/female/F (51).jpg'
+
 var images = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10,
   f11, f12, f13, f14, f15, f16, f17, f18, f19, f20,
   f21, f22, f23, f24, f25, f26, f27, f28, f29, f30,
   f31, f32, f33, f34, f35, f36, f37, f38, f39, f40,
   f41, f42, f43, f44, f45, f46, f47, f48, f49, f50, f51];//doesnt scale well, but oh well
 
+
 function Pics() {
 
-  //const [message, setMessage] = useState(null);
   const [currentImage, setCurrentImage] = useState(f1);
   const [i, seti] = useState(0);
-
-  return (
-    <>
-      <button onClick={() => { setCurrentImage(images[i + 1]); seti(i + 1) }}>NEXT</button>
-      <div>
-        <img src={currentImage} width="468" height="400" />
-      </div>
-      <a href="https://github.com/sergiss/react-clock" target="_blank"><i className="fa">&#xf09b;</i> Clock Template Source Code </a>
-      <a href="https://github.com/abril-AL/Crux" target="_blank"><i className="fa">&#xf09b;</i> Crux Source Code </a>
-    </>
-  );
+  const [next, setN] = useState(true);
+  const [b, setb] = useState(false)
+  if (b) {
+    return (
+      <>
+        <text>ON BREAK</text>
+        <Countdown tgt={2000} event={() => setb(false)}></Countdown>
+      </>
+    )
+  }
+  else {
+    return (
+      <>
+        <button onClick={() => { setCurrentImage(images[i + 1]); seti(i + 1) }}>NEXT</button>
+        <div>
+          <img src={currentImage} width="468" height="400" />
+        </div>
+        <Countdown tgt={2000} event={() => { setCurrentImage(images[i + 1]); seti(i + 1); setb(true); console.log(next) }} ></Countdown>
+        <a href="https://github.com/sergiss/react-clock" target="_blank"><i className="fa">&#xf09b;</i> Clock Template Source Code </a>
+        <a href="https://github.com/abril-AL/Crux" target="_blank"><i className="fa">&#xf09b;</i> Crux Source Code </a>
+      </>
+    );
+  }
 }
+
 
 function App() {
   const [start, setS] = useState(false);
@@ -95,36 +108,3 @@ function App() {
 }
 
 export default App;
-
-
-/*
-export default function ImageSwapper() {
-  const [currentImage, setCurrentImage] = useState(null);
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentImage(images[Math.floor(Math.random() * items.length)]);
-    }, 5000)
-
-    return () => clearInterval(intervalId);
-  }, [])
-
-  return (
-    <div>
-      <img src={currentImage} />
-    </div>
-  )
-}
-
-
-<Countdown event={() => setMessage("The world has been destroyed! :(")} />
-      {
-        message && (
-          <div className='message'>
-            {message}
-          </div>
-        )
-      }
-
-
-*/
