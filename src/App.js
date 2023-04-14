@@ -62,14 +62,13 @@ var images = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10,
 
 function Pics() {
 
-  const [message, setMessage] = useState(null);
-  const [currentImage, setCurrentImage] = useState(null);
+  //const [message, setMessage] = useState(null);
+  const [currentImage, setCurrentImage] = useState(f1);
   const [i, seti] = useState(0);
 
   return (
     <>
-      <button onClick={() => setCurrentImage(f1)}>START</button>
-      <button onClick={() => { setCurrentImage(images[i]); seti(i + 1) }}>NEXT</button>
+      <button onClick={() => { setCurrentImage(images[i + 1]); seti(i + 1) }}>NEXT</button>
       <div>
         <img src={currentImage} width="468" height="400" />
       </div>
@@ -80,9 +79,19 @@ function Pics() {
 }
 
 function App() {
-  return (
-    <Pics></Pics>
-  );
+  const [start, setS] = useState(false);
+
+  if (!start) {
+    return (
+      <button onClick={() => { setS(!start) }}>START TRIAL</button>
+    );
+  }
+  else {
+    return (
+      <Pics></Pics>
+    );
+  }
+
 }
 
 export default App;
@@ -117,5 +126,5 @@ export default function ImageSwapper() {
         )
       }
 
-      
+
 */
