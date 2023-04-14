@@ -1,11 +1,8 @@
-# react-clock
- :hourglass_flowing_sand: A simple test of a digital clock in react
-  
- <h3><a href="https://sergiss.github.io/react-clock/" target="_blank">Demo</a></h3>
+# Crux-UI
 
-![React Clock](https://github.com/sergiss/react-clock/blob/master/react-clock.png?raw=true)
+For ![Crux Project](https://github.com/abril-AL/Crux) use.
+Provides a simple UI to present faces provided by Bernd Wittenbrink <research@qualtrics.chicagobooth.edu> Chicago Face Database, University of Chicago Booth School of Business
 
-www.sergiosoriano.com
-
+## Installation + Running
 npm install
 npm start
