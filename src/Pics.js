@@ -1,5 +1,11 @@
 import { Countdown } from './components/Countdown';
 import { useState } from 'react';
+import { PostTrial } from './PostTrial';
+import Badge from 'react-bootstrap/Badge';
+import './App.css';
+import Image from 'react-bootstrap/Image';
+import Card from 'react-bootstrap/Card';
+import cardI from './fonts/break_img.png';
 
 import f1 from './faces/female/F (1).jpg'
 import f2 from './faces/female/F (2).jpg'
@@ -141,7 +147,7 @@ var images = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10,
     m11, m12, m13, m14, m15, m16, m17, m18, m19, m20,
     m21, m22, m23, m24, m25, m26, m27, m28, m29, m30,
     m31, m32, m33, m34, m35, m36, m37, m38, m39, m40,
-    m41, m42, m43];//doesnt scale well, but oh well
+    m41, m42, m43, m44];//doesnt scale well, but oh well
 
 
 function Pics(prefer) {
@@ -151,22 +157,41 @@ function Pics(prefer) {
     const [currentImage, setCurrentImage] = useState(prefImgs[0]);
     const [i, seti] = useState(0);
     const [b, setb] = useState(false)
+    const TIME = 5000;
     if (b) {
+        if (i == 10) {
+            return (<>
+                <PostTrial></PostTrial>
+            </>);
+        }
         return (
             <>
-                <text>Break</text>
-                <Countdown tgt={5000} event={() => setb(false)}></Countdown>
+                <span id="content1"></span>
+
+                <Countdown tgt={TIME} event={() => setb(false)}></Countdown>
+                <Card style={{ width: '18rem' }}>
+                    <Card.Img variant="top" src={cardI} />
+                    <Card.Body>
+                        <Card.Title>
+                            <h3>
+                                <Badge bg="secondary">Five Second Break</Badge>
+                            </h3>
+                        </Card.Title>
+                        <Card.Text>
+                            The next image will be presented shortly
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
             </>
         )
     }
     else {
         return (
             <div>
-                <button onClick={() => { setCurrentImage(prefImgs[i + 1]); seti(i + 1) }}>{'->'}</button>
+                <Countdown width={368} tgt={TIME} event={() => { setCurrentImage(prefImgs[i + 1]); seti(i + 1); setb(true); }} ></Countdown>
                 <div>
-                    <img src={currentImage} width="368" height="300" />
+                    <Image height={400} src={currentImage}  ></Image>
                 </div>
-                <Countdown tgt={5000} event={() => { setCurrentImage(prefImgs[i + 1]); seti(i + 1); setb(true); }} ></Countdown>
             </div>
         );
     }
