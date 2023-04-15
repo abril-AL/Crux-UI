@@ -1,8 +1,8 @@
 i = 1
-while  i != 52 :
-        print("import f"+str(i)+" from \'./faces/female/F ("+str(i)+").jpg\'"),
+while  i != 27 :
+        print("import m"+str(i)+" from \'./faces/male/M ("+str(i)+").jpg\'"),
         i = i+1
 i = 1
-while  i != 52 :
-    print( 'f'+str(i) +', ');
+while  i != 27 :
+    print( 'm'+str(i) +', ');
     i+=1

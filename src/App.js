@@ -42,46 +42,47 @@ function App() {
             <input name="myInput" onChange={e => { setName(e.target.value); }} />
           </Form.Group>
         </Form>
-        <Dropdown>
-          <Dropdown.Toggle id="dropdown-button-dark-example1" variant="secondary">
-            Gender
-          </Dropdown.Toggle>
-          <Dropdown.Menu variant="dark">
-            <Dropdown.Item href="#/action-2" onClick={() => HRT('Female')}
-            >Female</Dropdown.Item>
-            <Dropdown.Item href="#/action-3" onClick={() => HRT('Male')}
-            >Male</Dropdown.Item>
-            <Dropdown.Item href="#/action-4" onClick={() => HRT('Gender queer/ gender nonconforming')}
-            >Gender queer/ gender nonconforming</Dropdown.Item>
-            <Dropdown.Item href="#/action-5" onClick={() => HRT('Questioning')}
-            >Questioning</Dropdown.Item>
-            <Dropdown.Item href="#/action-6" onClick={() => HRT('Prefer not to say')}
-            >Prefer not to say </Dropdown.Item>
-            <Dropdown.Divider />
-          </Dropdown.Menu>
-        </Dropdown>
-        <span id="content1"></span>
-        <Dropdown>
-          <Dropdown.Toggle id="dropdown-button-dark-example1" variant="secondary">
-            Sexual Preference
-          </Dropdown.Toggle>
-
-          <Dropdown.Menu variant="dark">
-            <Dropdown.Item href="#/action-2" onClick={() => pride('Heterosexual (female)')}
-            >Heterosexual (female)</Dropdown.Item>
-            <Dropdown.Item href="#/action-3" onClick={() => pride('Heterosexual (male)')}
-            >Heterosexual (male)</Dropdown.Item>
-            <Dropdown.Item href="#/action-4" onClick={() => pride('Homosexual (female)')}
-            >Homosexual (female)</Dropdown.Item>
-            <Dropdown.Item href="#/action-5" onClick={() => pride('Homosexual (male)')}
-            >Homosexual (male)</Dropdown.Item>
-            <Dropdown.Item href="#/action-6" onClick={() => pride('Bisexual/pansexual')}
-            >Bisexual/pansexual </Dropdown.Item>
-            <Dropdown.Item href="#/action-7" onClick={() => pride('Asexual/other')}
-            >Asexual/other</Dropdown.Item>
-            <Dropdown.Divider />
-          </Dropdown.Menu>
-        </Dropdown>
+        <div>
+          <Dropdown>
+            <Dropdown.Toggle id="dropdown-button-dark-example1" variant="secondary">
+              Gender
+            </Dropdown.Toggle>
+            <Dropdown.Menu variant="dark">
+              <Dropdown.Item href="#/action-2" onClick={() => HRT('Female')}
+              >Female</Dropdown.Item>
+              <Dropdown.Item href="#/action-3" onClick={() => HRT('Male')}
+              >Male</Dropdown.Item>
+              <Dropdown.Item href="#/action-4" onClick={() => HRT('Gender queer/ gender nonconforming')}
+              >Gender queer/ gender nonconforming</Dropdown.Item>
+              <Dropdown.Item href="#/action-5" onClick={() => HRT('Questioning')}
+              >Questioning</Dropdown.Item>
+              <Dropdown.Item href="#/action-6" onClick={() => HRT('Prefer not to say')}
+              >Prefer not to say </Dropdown.Item>
+              <Dropdown.Divider />
+            </Dropdown.Menu>
+          </Dropdown>
+          <span id="content1"></span>
+          <Dropdown>
+            <Dropdown.Toggle id="dropdown-button-dark-example1" variant="secondary">
+              Sexual Preference
+            </Dropdown.Toggle>
+            <Dropdown.Menu variant="dark">
+              <Dropdown.Item href="#/action-2" onClick={() => pride('Heterosexual (female)')}
+              >Heterosexual (female)</Dropdown.Item>
+              <Dropdown.Item href="#/action-3" onClick={() => pride('Heterosexual (male)')}
+              >Heterosexual (male)</Dropdown.Item>
+              <Dropdown.Item href="#/action-4" onClick={() => pride('Homosexual (female)')}
+              >Homosexual (female)</Dropdown.Item>
+              <Dropdown.Item href="#/action-5" onClick={() => pride('Homosexual (male)')}
+              >Homosexual (male)</Dropdown.Item>
+              <Dropdown.Item href="#/action-6" onClick={() => pride('Bisexual/pansexual')}
+              >Bisexual/pansexual </Dropdown.Item>
+              <Dropdown.Item href="#/action-7" onClick={() => pride('Asexual/other')}
+              >Asexual/other</Dropdown.Item>
+              <Dropdown.Divider />
+            </Dropdown.Menu>
+          </Dropdown>
+        </div>
         <span id="content1"></span>
         <Button size="lg" onClick={() => { setV(checkVal()) }}>Start Trial</Button>
         <span id="content1"></span>
@@ -91,8 +92,10 @@ function App() {
     );
   }
   else {
+    const prefer = [userGender, userSexOrt];
+    console.log(prefer);
     return (
-      <Pics></Pics>
+      <Pics prefer={prefer}></Pics>
     );
   }
 

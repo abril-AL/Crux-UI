@@ -53,23 +53,57 @@ import f49 from './faces/female/F (49).jpg'
 import f50 from './faces/female/F (50).jpg'
 import f51 from './faces/female/F (51).jpg'
 
+import m1 from './faces/male/M (1).jpg'
+import m2 from './faces/male/M (2).jpg'
+import m3 from './faces/male/M (3).jpg'
+import m4 from './faces/male/M (4).jpg'
+import m5 from './faces/male/M (5).jpg'
+import m6 from './faces/male/M (6).jpg'
+import m7 from './faces/male/M (7).jpg'
+import m8 from './faces/male/M (8).jpg'
+import m9 from './faces/male/M (9).jpg'
+import m10 from './faces/male/M (10).jpg'
+import m11 from './faces/male/M (11).jpg'
+import m12 from './faces/male/M (12).jpg'
+import m13 from './faces/male/M (13).jpg'
+import m14 from './faces/male/M (14).jpg'
+import m15 from './faces/male/M (15).jpg'
+import m16 from './faces/male/M (16).jpg'
+import m17 from './faces/male/M (17).jpg'
+import m18 from './faces/male/M (18).jpg'
+import m19 from './faces/male/M (19).jpg'
+import m20 from './faces/male/M (20).jpg'
+import m21 from './faces/male/M (21).jpg'
+import m22 from './faces/male/M (22).jpg'
+import m23 from './faces/male/M (23).jpg'
+import m24 from './faces/male/M (24).jpg'
+import m25 from './faces/male/M (25).jpg'
+import m26 from './faces/male/M (26).jpg'
+
+
+// f = 0-50  m 51-77 (?)
 var images = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10,
     f11, f12, f13, f14, f15, f16, f17, f18, f19, f20,
     f21, f22, f23, f24, f25, f26, f27, f28, f29, f30,
     f31, f32, f33, f34, f35, f36, f37, f38, f39, f40,
-    f41, f42, f43, f44, f45, f46, f47, f48, f49, f50, f51];//doesnt scale well, but oh well
+    f41, f42, f43, f44, f45, f46, f47, f48, f49, f50, f51,
+
+    m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11,
+    m12, m13, m14, m15, m16, m17, m18, m19,
+    m20, m21, m22, m23, m24, m25, m26];//doesnt scale well, but oh well
 
 
-function Pics() {
-
-    const [currentImage, setCurrentImage] = useState(f1);
+function Pics(prefer) {
+    console.log(prefer['prefer'][1]);
+    const prefRange = get_pref_imgs(prefer['prefer'][1]);
+    const prefImgs = images.slice(prefRange['l'], prefRange['h'] + 1);
+    const [currentImage, setCurrentImage] = useState(prefImgs[0]);
     const [i, seti] = useState(0);
-    const [next, setN] = useState(true);
     const [b, setb] = useState(false)
     if (b) {
         return (
             <>
-                <text>ON BREAK</text>
+                <text>Break</text>
                 <Countdown tgt={5000} event={() => setb(false)}></Countdown>
             </>
         )
@@ -77,14 +111,33 @@ function Pics() {
     else {
         return (
             <div>
-                <button onClick={() => { setCurrentImage(images[i + 1]); seti(i + 1) }}>{'->'}</button>
+                <button onClick={() => { setCurrentImage(prefImgs[i + 1]); seti(i + 1) }}>{'->'}</button>
                 <div>
-                    <img src={currentImage} width="468" height="400" />
+                    <img src={currentImage} width="368" height="300" />
                 </div>
-                <Countdown tgt={5000} event={() => { setCurrentImage(images[i + 1]); seti(i + 1); setb(true); console.log(next) }} ></Countdown>
+                <Countdown tgt={5000} event={() => { setCurrentImage(prefImgs[i + 1]); seti(i + 1); setb(true); }} ></Countdown>
             </div>
         );
     }
 }
+
+function get_pref_imgs(so) {
+    console.log(so);
+    const MID = 80;
+    const MAX = 123;
+    if (so != '') {
+        if (so === "Heterosexual (female)" || so === "Homosexual (male)")
+            return { 'l': MID, 'h': MAX };
+        if (so === "Heterosexual (male)" || so === "Homosexual (female)")
+            return { 'l': 0, 'h': MID - 1 };
+        if (so === "Bisexual/pansexual" || so === "Asexual/other")
+            return { 'l': 0, 'h': MAX };
+    }
+    else {
+        console.log('error with pref prop');
+        return null;
+    }
+}
+
 
 export { Pics };
