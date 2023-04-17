@@ -20,8 +20,9 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 export async function addTrial(data) {
-    const date = new Date();
-    const docRef = doc(db, "trials", "sbfjeukShctZ5k5phI1L");
+    const d = new Date();
+    let time = d.getTime();
+    const docRef = doc(db, "trials", String(time));
     setDoc(docRef, data).then(docRef => { console.log("Entire Document has been updated successfully"); })
         .catch(error => { console.log(error); });
 }

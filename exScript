@@ -1,0 +1,52 @@
+import numpy as np
+import pandas as pd
+import neurokit2 as nk
+'''
+Beta (13-30 Hz): Strongest in the frontocentral regions.
+
+'''
+
+# Load the NeuroKit package and other useful packages
+import neurokit2 as nk
+import mne
+raw = nk.data("eeg_1min_200hz")
+
+events = mne.find_events(raw, stim_channel='STI 014', verbose=False)
+event_dict = {'auditory/left': 1, 'auditory/right': 2, 'visual/left': 3,
+              'visual/right': 4, 'face': 5, 'buttonpress': 32}
+              
+sampling_rate = raw.info["sfreq"]  # Store the sampling rate
+
+spectrum = raw.compute_psd(method="welch")
+print('--------------------------')
+
+fig = spectrum.plot()
+for s in spectrum:
+    print(s)
+
+'''
+# Download example data
+data = nk.data(dataset="eeg_1min_200hz")
+
+# Preprocess the data (filter, find peaks, etc.)
+#processed_data, info = nk.bio_process(ecg=data["ECG"], rsp=data["RSP"], eda=data["EDA"], sampling_rate=100)
+
+# Compute relevant features
+#results = nk.bio_analyze(processed_data, sampling_rate=100)
+
+import numpy as np
+d = [10,20,30,40,50.2,123,-12,-123, 12365,94, -5]
+np.savetxt('output',d)
+print(open("output").read())
+
+'''
+
+#print(data)
+print('--------------------------')
+eeg = nk.data("eeg_150hz")
+nk.signal_plot(eeg, sampling_rate=150)
+print(eeg)
+print('--------------------------')
+print(len(eeg))
+#print(results)
+

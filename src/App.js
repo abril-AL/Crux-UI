@@ -1,4 +1,3 @@
-
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
@@ -8,8 +7,6 @@ import { Pics } from './Pics.js'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Dropdown from 'react-bootstrap/Dropdown';
-import { addTrial } from './firebase';
-
 
 function App() {
   const [valid, setV] = useState(false);//need valid true to start
@@ -17,17 +14,12 @@ function App() {
   const [userName, setName] = useState('');
   const [userGender, HRT] = useState('');
   const [userSexOrt, pride] = useState('');
+  const [extraInfo, addInfo] = useState('');
 
   function checkVal() {
     if (userName == '' || userGender == '' || userSexOrt == '')
       return false;
     else {
-      const data = {};
-      data['name'] = userName;
-      data['gender'] = userGender;
-      data['sexualorientation'] = userSexOrt;
-      console.log(data);
-      addTrial(data);
       return true;
     }
   }
@@ -84,6 +76,13 @@ function App() {
           </Dropdown>
         </div>
         <span id="content1"></span>
+        <Form>
+          <Form.Group className="mb-3" controlId="formName">
+            <Form.Label>Any additional information you would like us to know?</Form.Label>
+            <span id="content1"></span>
+            <input name="myInput" onChange={e => { addInfo(e.target.value); }} />
+          </Form.Group>
+        </Form>
         <Button size="lg" onClick={() => { setV(checkVal()) }}>Start Trial</Button>
         <span id="content1"></span>
         <a href="https://github.com/sergiss/react-clock" target="_blank"><i className="fa">&#xf09b;</i> Clock Template Source Code </a>
@@ -92,10 +91,9 @@ function App() {
     );
   }
   else {
-    const prefer = [userGender, userSexOrt];
-    console.log(prefer);
+    const user = [userName, userGender, userSexOrt, extraInfo];
     return (
-      <Pics prefer={prefer}></Pics>
+      <Pics user={user}></Pics>
     );
   }
 

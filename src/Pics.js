@@ -1,7 +1,6 @@
 import { Countdown } from './components/Countdown';
 import { useState } from 'react';
 import { PostTrial } from './PostTrial';
-import Badge from 'react-bootstrap/Badge';
 import './App.css';
 import Image from 'react-bootstrap/Image';
 import Card from 'react-bootstrap/Card';
@@ -150,18 +149,18 @@ var images = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10,
     m41, m42, m43, m44];//doesnt scale well, but oh well
 
 
-function Pics(prefer) {
-    console.log(prefer['prefer'][1]);
-    const prefRange = get_pref_imgs(prefer['prefer'][1]);
+function Pics(user) {
+    console.log(user['user'][2]);
+    const prefRange = get_pref_imgs(user['user'][2]);
     const prefImgs = images.slice(prefRange['l'], prefRange['h'] + 1);
     const [currentImage, setCurrentImage] = useState(prefImgs[0]);
     const [i, seti] = useState(0);
     const [b, setb] = useState(false)
-    const TIME = 5000;
+    const TIME = 500;
     if (b) {
         if (i == 10) {
             return (<>
-                <PostTrial></PostTrial>
+                <PostTrial user={user}></PostTrial>
             </>);
         }
         return (
@@ -172,11 +171,6 @@ function Pics(prefer) {
                 <Card style={{ width: '18rem' }}>
                     <Card.Img variant="top" src={cardI} />
                     <Card.Body>
-                        <Card.Title>
-                            <h3>
-                                <Badge bg="secondary">Five Second Break</Badge>
-                            </h3>
-                        </Card.Title>
                         <Card.Text>
                             The next image will be presented shortly
                         </Card.Text>
