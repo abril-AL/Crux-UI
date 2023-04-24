@@ -50,8 +50,8 @@ export function ConstPics(user) {
     const [imgSet, setImgSet] = useState(get_pref_ten(SO));
     const [i, seti] = useState(0);
     const [b, setb] = useState(false)
-    const BTIME = 200;//Break time length (ms)
-    const IMGTIME = 100;//Image presenting time (ms)
+    const BTIME = 3000;//Break time length (ms)
+    const IMGTIME = 3000;//Image presenting time (ms)
     function get_pref_ten(so) {
         if (so != '') {
             if (so === "Heterosexual (female)" || so === "Homosexual (male)")
