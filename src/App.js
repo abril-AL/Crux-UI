@@ -3,10 +3,11 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import { useState } from 'react';
 import './App.css';
-import { Pics } from './Pics.js'
+import { Pics } from './Pics-Rand.js'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Dropdown from 'react-bootstrap/Dropdown';
+import { ConstPics } from './Pics-const';
 
 function App() {
   const [valid, setV] = useState(false);//need valid true to start
@@ -93,10 +94,10 @@ function App() {
   else {
     const user = [userName, userGender, userSexOrt, extraInfo];
     return (
-      <Pics user={user}></Pics>
+      <ConstPics user={user}></ConstPics>
     );
   }
-
+  //<Pics user={user}></Pics>
 }
 
 

@@ -9,8 +9,8 @@ import Button from 'react-bootstrap/Button';
 import { Card, Badge } from "react-bootstrap";
 
 import { addTrial } from './firebase';
-import { test } from "./Pics";
-import { images } from "./Pics";
+import { test } from "./Pics-Rand";
+import { images } from "./Pics-Rand";
 
 function PostTrial(user, rand) {
     const [q1, setq1] = useState('');
