@@ -50,9 +50,8 @@ export function ConstPics(user) {
     const [imgSet, setImgSet] = useState(get_pref_ten(SO));
     const [i, seti] = useState(0);
     const [b, setb] = useState(false)
-    const BTIME = 2000;//Break time length (ms)
-    const IMGTIME = 1000;//Image presenting time (ms)
-
+    const BTIME = 200;//Break time length (ms)
+    const IMGTIME = 100;//Image presenting time (ms)
     function get_pref_ten(so) {
         if (so != '') {
             if (so === "Heterosexual (female)" || so === "Homosexual (male)")
@@ -69,21 +68,27 @@ export function ConstPics(user) {
     }
 
     if (b) {
-        if (i == 10) {//last break = end trial
+        if (i == 10) { //last break = end trial
+            const ret = [imgSet, randOrder];
             return (
                 <>
-                    <PostTrial user={user} imgs={imgSet}></PostTrial>
+                    <PostTrial user={user} imgSet={ret}></PostTrial>
                 </>);
         }
         return (
             <>
                 <span id="content1"></span>
-
-                <Countdown tgt={BTIME} event={() => setb(false)}></Countdown>
+                <div className='hideThis'>
+                    <Countdown tgt={BTIME} event={() => setb(false)}></Countdown>
+                </div>
+                <span id="content1"></span>
+                <span id="content1"></span>
+                <span id="content1"></span>
+                <span id="content1"></span>
+                <span id="content1"></span> { /* this is just spacing stuff */}
                 <Card style={{ width: '18rem' }}>
-                    <Card.Img variant="top" src={cardI} />
                     <Card.Body>
-                        <Card.Text>
+                        <Card.Text className='centerCardText'>
                             The next image will be presented shortly
                         </Card.Text>
                     </Card.Body>
@@ -94,7 +99,9 @@ export function ConstPics(user) {
     else {
         return (
             <div>
-                <Countdown width={368} tgt={IMGTIME} event={() => { seti(i + 1); setb(true); }} ></Countdown>
+                <div className='hideThis'>
+                    <Countdown width={368} tgt={IMGTIME} event={() => { seti(i + 1); setb(true); }} ></Countdown>
+                </div>
                 <div>
                     <Image height={400} src={imgSet[randOrder[i]]}  ></Image>
                 </div>
